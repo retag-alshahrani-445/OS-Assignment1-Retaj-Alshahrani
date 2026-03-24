@@ -88,16 +88,23 @@ Document your development process as you work on the assignment. Add entries sho
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**: 
+### Entry 4 - [March 24, 2026, 2:30 AM]
+**What I did**: Implemented Feature 1: Process Priority
 
 **Details**: 
+- Added a new field priority to the Process class with values from 1 to 5
+- Modified the constructor to include the priority parameter
+- Generated random priority values for each process when creating them
+- Updated the addProcessToQueue method to display the priority when a process enters the ready queue
+- Added clear comments in the code to explain the new changes
+- Created a commit with message: "Added process priority"
+- Pushed the changes to my GitHub repository
 
-**Challenges**: 
+**Challenges**: I was not sure how to properly add a new attribute to the Process class and pass it through the constructor
 
-**Solution**: 
+**Solution**: I reviewed the class structure, added the new variable, and updated the constructor and print statements step by step
 
-**Time spent**: 
+**Time spent**: 2 hours
 
 ---
 
