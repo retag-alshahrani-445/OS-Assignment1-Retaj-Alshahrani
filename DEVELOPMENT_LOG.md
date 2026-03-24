@@ -34,12 +34,14 @@ Document your development process as you work on the assignment. Add entries sho
 
 ### Entry 1 - [March 21, 2026, 6:00 PM]
 **What I did**: Set up development environment and installed required tools
+
 **Details**: 
 - Installed VS Code on my computer
 - Installed Java Extension Pack for Java support
 - Installed GitLens for Git management
 - Installed Markdown All in One for documentation files
 - Verified that Java is working correctly
+
 **Challenges**: I was not sure which extensions were required and how to install them properly
 
 **Solution**: I was following the instructions in the assignment and watch some videos in YouTub, and installed all required extensions successfully
@@ -50,6 +52,7 @@ Document your development process as you work on the assignment. Add entries sho
 
 ### Entry 2 - [March 22, 2026, 11:30 PM]
 **What I did**: Created GitHub account and forked the repository
+
 **Details**: 
 - Created a GitHub account using my university email [445052009@std.psau.edu.sa]
 - Chose a professional username [retag-alshahrani-445]
@@ -74,11 +77,13 @@ Document your development process as you work on the assignment. Add entries sho
 - Added commit message
 - Cloned the repository to my local machine using VS Code
 - Ran the program successfully to verify the changes
+
 **Challenges**: 
 - I was not sure where to find the correct line for the student ID in the code
 - Faced difficulty linking GitHub account with VS Code
 
 **Solution**: Searched within the file and found the student ID in line 150, for the second challenge; I used the sign-in option in VS Code and followed a tutorial to complete the connection
+
 **Time spent**: 2 hours
 
 ---
