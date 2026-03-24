@@ -32,42 +32,54 @@ Document your development process as you work on the assignment. Add entries sho
 
 ## Your Development Log:
 
-### Entry 1 - [Date and Time]
-**What I did**: 
-
+### Entry 1 - [March 21, 2026, 6:00 PM]
+**What I did**: Set up development environment and installed required tools
 **Details**: 
+- Installed VS Code on my computer
+- Installed Java Extension Pack for Java support
+- Installed GitLens for Git management
+- Installed Markdown All in One for documentation files
+- Verified that Java is working correctly
+**Challenges**: I was not sure which extensions were required and how to install them properly
 
-**Challenges**: 
+**Solution**: I was following the instructions in the assignment and watch some videos in YouTub, and installed all required extensions successfully
 
-**Solution**: 
-
-**Time spent**: 
+**Time spent**: 2 hours
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**: 
-
+### Entry 2 - [March 22, 2026, 11:30 PM]
+**What I did**: Created GitHub account and forked the repository
 **Details**: 
+- Created a GitHub account using my university email [445052009@std.psau.edu.sa]
+- Chose a professional username [retag-alshahrani-445]
+- Forked the starter repository
+- Rename the repository to [OS-Assignment1-Retag-Alshahrani]
+- Verified that the repository is public
 
-**Challenges**: 
+**Challenges**: I was not familiar with the GitHub interface and had difficulty understanding how to fork and rename the repository
 
-**Solution**: 
+**Solution**: Followed the assignment instructions step by step and ask Chatgpt to learn more, then I did it.
 
-**Time spent**: 
+**Time spent**: 1.5 hours  
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**: 
+### Entry 3 - [March 23, 2026, 2:00 AM]
+**What I did**: Updated my student ID on GitHub and cloned the repository 
 
 **Details**: 
-
+- Navigated to SchedulerSimulation.java file in my repository on GitHub
+- Changed student ID on line 150 to my actual ID (445052009)
+- Added commit message
+- Cloned the repository to my local machine using VS Code
+- Ran the program successfully to verify the changes
 **Challenges**: 
+- I was not sure where to find the correct line for the student ID in the code
+- Faced difficulty linking GitHub account with VS Code
 
-**Solution**: 
-
-**Time spent**: 
+**Solution**: Searched within the file and found the student ID in line 150, for the second challenge; I used the sign-in option in VS Code and followed a tutorial to complete the connection
+**Time spent**: 2 hours
 
 ---
 
