@@ -108,16 +108,24 @@ Document your development process as you work on the assignment. Add entries sho
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**: 
+### Entry 5 - [March 25, 2026, 12:20 AM]
+**What I did**: Implemented Feature 2: Context Switch Counter
 
 **Details**: 
+- Added a static variable private static int contextSwitchCount = 0; in SchedulerSimulation
+- Introduced a boolean flag isFirstProcess = true; before the scheduling loop
+- Incremented the counter only when a new process starts and it is not the first process
+- Printed the total at the end: " Total context switches: 20"
+- Created a commit with message: "Feature 2: Implemented context switch counter"
+- Pushed the changes to my GitHub repository
 
 **Challenges**: 
+- Initially the counter was displayed many times because I printed it inside the ready‑queue message
+- I also counted the first process as a switch, which would be incorrect
 
-**Solution**: 
+**Solution**: I moved the increment logic to the scheduling loop just before currentThread.start(), I used isFirstProcess to skip counting the first process, also ensured the final count is printed only once after the simulation ends
 
-**Time spent**: 
+**Time spent**: 4.5 hours
 
 ---
 
