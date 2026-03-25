@@ -101,21 +101,21 @@ The frist part of this example, shown that P1 had an initial burst time of 6809m
 
 **Your Answer:**
 
-### Example 1: [Name of application/scenario]
+### Example 1: Chat Applications
 
 **Description**: 
-[Describe the real-world scenario or application]
+Chat applications like WhatsApp or Telegram handle messages from a large number of users simultaneously.
 
 **Why Round-Robin works well here**: 
-[Explain why Round-Robin scheduling is suitable. Consider fairness, responsiveness, predictability, etc.]
+Because it ensures that every user has the opportunity to send and receive messages without significant delay, thus improving the user experience.
 
-### Example 2: [Name of application/scenario]
+### Example 2: Online Multiplayer Games (PUBG)
 
 **Description**: 
-[Describe the real-world scenario or application]
+Online multiplayer games require players to continuously update their status (movement, attacks, scores, ..).
 
 **Why Round-Robin works well here**: 
-[Explain why Round-Robin scheduling is suitable. Consider fairness, responsiveness, predictability, etc.]
+Because it ensures that every player receives an equal amount of time to update, maintaining game fairness and smooth performance.
 
 ---
 
