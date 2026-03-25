@@ -122,10 +122,10 @@ Because it ensures that every player receives an equal amount of time to update,
 ## Summary
 
 **Key concepts I understood through these questions:**
-1. 
-2. 
-3. 
+1. How thread states change during execution
+2. The difference between threads and processes
+3. Thread Lifecycle ( New, Runnable, Running, Waiting, and Terminated states) 
 
 **Concepts I need to study more:**
-1. 
-2. 
+1. predictability, I want to learn more abaut it.
+2. Detailed behavior of context switching.
