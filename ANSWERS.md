@@ -26,15 +26,39 @@ In this project, we used threads together to simulate the execution of multiple 
 
 **Your Answer:**
 
-[Write your answer here. Describe the specific behavior - where does the process go? When does it run again? Give an example from your actual program output showing a process that was re-queued.]
+In Round‑Robin scheduling, when a process does not finish within its allocated time quantum, it is preempted and placed back at the end of the ready queue so that it can receive CPU time again in the next round. This ensures fairness because every process gets a turn.  
 
 Example from my output:
 ```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+  ▶ P1 executing quantum [4000ms] 
+  ⚡ Quantum progress: [███████████████] 100%
+  ⏸ P1 completed quantum 4000ms │ Overall progress: [███████████░░░░░░░░░] 58%
+     Remaining time: 2809ms
+  ↻ P1 yields CPU for context switch
+
+  ➕ P1 (Priority: 3) added to ready queue │ Burst time: 6809ms
+┌─ Ready Queue ─────────────────────────────────────────────────────────────────
+│ [P3 → P4 → P5 → P6 → P7 → P8 → P9 → P10 → P1]
+└───────────────────────────────────────────────────────────────────────────────
+```
+P1 was in last of Ready Queue 
+
+after doing the other in Ready Queue and then come back to complate P1
+```
+  ▶ P1 executing quantum [2809ms]
+  ⚡ Quantum progress: [███████████████] 100%
+  ⏸ P1 completed quantum 2809ms │ Overall progress: [████████████████████] 100%
+     Remaining time: 0ms
+  ✓ P1 finished execution!
+
+┌─ Ready Queue ─────────────────────────────────────────────────────────────────
+│ [P3 → P4 → P5 → P6 → P7 → P8 → P9]
+└───────────────────────────────────────────────────────────────────────────────
+
 ```
 
 **Explanation of example:**
-[Explain what's happening in the output snippet you pasted]
+The frist part of this example, shown that P1 had an initial burst time of 6809ms, but the Time Quantum was only 4000ms, and after its first turn, P1 still needed 2809ms to finish. My output shows P1 "yielding the CPU" and being moved to the end of the Ready Queue (behind P10). P1 had to wait for all processes from P2 to P10 to finish their respective quanta before it could return to the CPU. In the end, P1 come back again to execute its remaining 2809ms and successfully finished as shown in second part of my output in the above.
 
 ---
 
