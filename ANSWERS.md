@@ -68,17 +68,30 @@ The frist part of this example, shown that P1 had an initial burst time of 6809m
 
 **Your Answer:**
 
-[Write your answer here. For each state, explain when P1 enters that state during the simulation. Use your understanding of the code to trace through the lifecycle.]
+1. **New**: P1 is in the New state when it is first created in the program but before it is started, in the code that happened when statement `Thread thread = new Thread(process);` is executed in the `addProcessToQueue` function. At this time, the thread has not started execution yet and is not part of the ready queue.
 
-1. **New**: [When is P1 in New state?]
+2. **Runnable**:  When  P1  is added to ready queue, at execute `processQueue.add(thread);` at `processQueue` function.
+     In output:
+     ```
+    ➕ P1 (Priority: 3) added to ready queue │ Burst time: 6809ms 
+    ```
 
-2. **Runnable**: [When does P1 become Runnable?]
+3. **Running**: P1 transitions to the Running state when the scheduler calls `currentThread.start();` in the `main` method. We can see that in the output:
+     ```
+    ▶ P1 executing quantum [4000ms]
+    ```
 
-3. **Running**: [When is P1 Running?]
+4. **Waiting**: P1 enters the Waiting state when it finishes its time quantum but still has remaining burst time or at during the execution of `Thread.sleep(stepTime);` inside the `run()` method. we can see this in output:
+     ```
+    ↻ P1 yields CPU for context switch
+    ```
+    This happens to simulate the real-world time it takes for a process to execute
 
-4. **Waiting**: [When/why would P1 be Waiting?]
-
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: P1 reaches the Terminated state once its Remaining Time = 0ms, this occurs because the condition `if(remainingTime > 0)` is not met. We can see this in the output:
+     ```
+    Remaining time: 0ms
+    ✓ P1 finished execution!
+    ```
 
 ---
 
