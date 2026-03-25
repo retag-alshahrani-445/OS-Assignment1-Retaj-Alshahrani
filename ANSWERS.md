@@ -11,7 +11,12 @@ Answer all 4 questions with detailed explanations. Each answer should be **3-5 s
 
 **Your Answer:**
 
-[Write your answer here. Consider: What is a process? What is a thread? How do they differ in terms of memory, resources, creation overhead? Why are threads more suitable for this simulation?]
+A *Process* is a standalone program with its own memory space, resources, while a *Thread* is a basic unit of CPU utilization and it's associated with a process.
+Each process has its own dedicated memory, and data cannot be exchanged directly between processes, whereas threads share the same memory within a single process.
+Processes require more resources due to their isolation, while threads consume significantly fewer resources, making them lighter and faster.
+Creation overhead of a process is slow and more cost, while a thread is faster and less cost.
+In this project, we used threads together to simulate the execution of multiple processes within a single CPU and we need to context switching between them quickly and without high costs.
+
 
 ---
 
