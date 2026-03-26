@@ -139,21 +139,25 @@ Document your development process as you work on the assignment. Add entries sho
   `waiting time = currentTime - lastEnqueueTime`, then added it to `totalWaitingTime`
 - Created a list allProcesses to store all process objects for later summary
 - Implemented `printSummaryTable()` to display a formatted table with Process Name, Burst Time, and Waiting Time
+- Created a commit with message: "Feature 3: Track Waiting Time"
+- Pushed the changes to my GitHub repository
+  
+**Challenges**: At begin, I calculated the waiting time after thread.join(), which resulted in incorrect values because it included execution time
+I also mistakenly calculated waiting time multiple times for the same process cycle, also the final table presentatio presented some difficulty in formatting it neatly.
 
-**Challenges**: 
+**Solution**: I removed duplicate calculations to avoid double counting
+Carefully tested the output to verify that waiting times increase only when the process is in the ready queue.
 
-**Solution**: 
-
-**Time spent**: 
+**Time spent**: 6 hours
 
 ---
 
 ## Summary
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [18 hours]
 
-**Most challenging part**: 
+**Most challenging part**: feature 3: waiting time was the most challenging. It required a deep understanding of how a round-robin loop works and determining when a process is "waiting and when it is executing. Understanding the difference between the time a time stamp is recorded and the time a wait time is calculated took several attempts.
 
-**Most interesting learning**: 
+**Most interesting learning**: For me, the most interesting part was concept of CPU Scheduling much clearer than just reading about it in a textbook.
 
-**What I would do differently next time**: 
+**What I would do differently next time**: I would plan the features more carefully before coding and test each feature step by step to avoid logical mistakes
