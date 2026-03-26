@@ -35,7 +35,7 @@ class Process implements Runnable {
 
     // Feature 3: Waiting time tracking fields
     private long creationTime;  //  Field to track time stamp when process was created 
-    private long totalWaitingTime; // Field to calculate accumulated waiting time (ms)
+    private long totalWaitingTime=0; // Field to calculate accumulated waiting time (ms)
     private long lastEnqueueTime; // Field to track time stamp when last added to ready queue
     
     // Constructor to initialize the process with name, burst time, and time quantum
@@ -48,9 +48,7 @@ class Process implements Runnable {
         
         // Feature 3: Record creation time
         this.creationTime = System.currentTimeMillis();
-        this.totalWaitingTime = 0; 
-        this.lastEnqueueTime = creationTime;   // Initially set, will be updated when enqueued
-        //It is used as a time reference to accurately calculate waiting times by subtracting the current time from the last time the operation was added to the queue.
+        
     }
 
     // This method will be called when the thread for this process is started
@@ -96,9 +94,16 @@ class Process implements Runnable {
         
         // If the process still has remaining time, it yields CPU for the next process
         if (remainingTime > 0) {
+            
             System.out.println(Colors.BLUE + "  ↻ " + Colors.CYAN + name + Colors.RESET + 
                               " yields CPU for context switch" + Colors.RESET);
         } else {
+            // Fuacter 3 : Calculate total waiting time
+            this.lastEnqueueTime = System.currentTimeMillis();
+            // Calculate total waiting time
+            // Formula: Waiting Time = (Total time in system) - (Actual execution time)
+            this.totalWaitingTime = (this.lastEnqueueTime - this.creationTime) - this.burstTime;
+            
             // If no time is left, the process has finished its execution
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + 
@@ -131,6 +136,12 @@ class Process implements Runnable {
                               Colors.RESET + " [" + remainingTime + "ms]");
             Thread.sleep(remainingTime); // Run until completion
             remainingTime = 0; // Mark the process as completed
+
+            // Feature 3:last Enqueue Time for last process
+            //calculat total witing time
+            this.lastEnqueueTime = System.currentTimeMillis();
+            this.totalWaitingTime = (this.lastEnqueueTime - this.creationTime) - this.burstTime;
+            
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + Colors.RESET);
             System.out.println();
@@ -175,7 +186,7 @@ class Process implements Runnable {
          return lastEnqueueTime; 
     }
     // Add adder function to waiting time
-    public void addWaitingTime(long time) {
+    public void addwaitingTime(long time) {
          this.totalWaitingTime += time;
     }
 }
@@ -236,7 +247,7 @@ public class SchedulerSimulation {
         for (int i = 1; i <= numProcesses; i++) {
             // Random burst time for each process between timeQuantum/2 and 3*timeQuantum
             int burstTime = timeQuantum/2 + random.nextInt(2 * timeQuantum + 1);
-            // add priority (1...5)
+            //futuer1:  add priority (1...5) 5 highest
             int priority = random.nextInt(5) + 1;
             // Create a new process object with a unique name, burst time, and the defined time quantum
             Process process = new Process("P" + i, burstTime, timeQuantum, priority); //Create the process with priority passing
@@ -262,8 +273,8 @@ public class SchedulerSimulation {
             // Get the next thread from the queue (FIFO)
             Thread currentThread = processQueue.poll(); // Dequeues the next thread
             
-           // contextSwitchCount++; // Increment the counter each time a process starts running
-            
+          
+              
             // Print the current process queue (list of process IDs in the queue)
             System.out.println(Colors.BOLD + Colors.MAGENTA + "┌─ Ready Queue " + "─".repeat(65) + Colors.RESET);
             System.out.print(Colors.MAGENTA + "│ " + Colors.RESET + Colors.BRIGHT_WHITE + "[" + Colors.RESET);
@@ -279,12 +290,14 @@ public class SchedulerSimulation {
             }
             System.out.println(Colors.BRIGHT_WHITE + "]" + Colors.RESET);
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
+            
 
             //Feature 2: Condition to increment context switch counter when CPU switches process
             if (!isFirstProcess) {
                 contextSwitchCount++;// Increase context switch counter only if this is not the first process
             }
             isFirstProcess = false; // (the first process start is not considered a context switch)
+            
             // Start the thread, which will run the process for one time quantum
             currentThread.start();
             
@@ -298,10 +311,8 @@ public class SchedulerSimulation {
             // Retrieve the process associated with the thread from the map
             Process process = processMap.get(currentThread);
             
-            // Feature 3: Accumulate waiting time for this process before it starts running
-            long now = System.currentTimeMillis();
-            long waitTime = now - process.getLastEnqueueTime();
-            process.addWaitingTime(waitTime);
+            
+            
 
             // Check if the process is not finished
             if (!process.isFinished()) {
@@ -310,10 +321,9 @@ public class SchedulerSimulation {
                     // Re-enqueue the process to give it another chance to run in the next round
                     addProcessToQueue(process, processQueue, processMap);
                 } else {
-                    // Feature 3: Before running to completion, also account for waiting time
-                    long now2 = System.currentTimeMillis();
-                    long waitTime2 = now2 - process.getLastEnqueueTime();
-                    process.addWaitingTime(waitTime2);
+                    
+                  
+                    
                     // If this is the last process in the queue, run it to completion
                     System.out.println(Colors.BRIGHT_YELLOW + "  ⚠ " + Colors.CYAN + process.getName() + 
                                       Colors.RESET + Colors.YELLOW + " is the last process → running to completion" + 
@@ -323,7 +333,8 @@ public class SchedulerSimulation {
             }
         }
         System.out.println("Total context switches: " + contextSwitchCount); // Display the total number of context switches 
-        // print tuble of futcer 3
+        
+        // call the function to print tuble of futcer 3
         printSummaryTable(allProcesses);
         // End of the scheduler simulation
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
@@ -359,6 +370,9 @@ public class SchedulerSimulation {
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
                           Colors.RESET);
     }
+    
+    // Futctue 3: Display table
+    // هذا الترتيب اكثر شي متعب لم يظبط الا بعد الكثير من المحاولات ملاحظة: 
     private static void printSummaryTable(List<Process> processes) {
     System.out.println("\n" + Colors.BOLD + Colors.BRIGHT_CYAN +
                       "╔═══════════════════════════════════════════════════════════╗" +
@@ -369,19 +383,17 @@ public class SchedulerSimulation {
     System.out.println(Colors.BOLD + Colors.BRIGHT_CYAN +
                       "╠═══════════════════════════════════════════════════════════╣" +
                       Colors.RESET);
-    // عناوين الأعمدة مع توضيح الوحدة (ms)
     System.out.printf(Colors.BOLD + "║ %-15s ║ %-18s ║ %-18s ║" + Colors.RESET + "\n",
                       "Process Name", "Burst Time (ms)", "Waiting Time (ms)");
     System.out.println(Colors.BOLD + Colors.BRIGHT_CYAN +
                       "╠═══════════════════════════════════════════════════════════╣" +
                       Colors.RESET);
-    long totalWaitingTime = 0;
     for (Process p : processes) {
         System.out.printf("║ %-15s ║ %-18d ║ %-18d ║\n",
                           p.getName(),
                           p.getBurstTime(),
                           p.getTotalWaitingTime());
-        totalWaitingTime += p.getTotalWaitingTime();
+        
     }
     System.out.println(Colors.BOLD + Colors.BRIGHT_CYAN +
                       "╚═══════════════════════════════════════════════════════════╝" +

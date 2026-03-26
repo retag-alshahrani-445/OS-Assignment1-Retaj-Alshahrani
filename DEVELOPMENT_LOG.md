@@ -129,10 +129,16 @@ Document your development process as you work on the assignment. Add entries sho
 
 ---
 
-### Entry 6 - [Optional - Date and Time]
-**What I did**: 
+### Entry 6 - [March 26, 2026, 3:20 PM]
+**What I did**: Added feature 3 "Track Waiting Time"
 
 **Details**: 
+- Added new fields in the `Process` class to track timing: `creationTime`, `lastEnqueueTime`, and `totalWaitingTime`
+- Initialized timing variables using `System.currentTimeMillis()` 
+- calculated the waiting time as:
+  `waiting time = currentTime - lastEnqueueTime`, then added it to `totalWaitingTime`
+- Created a list allProcesses to store all process objects for later summary
+- Implemented `printSummaryTable()` to display a formatted table with Process Name, Burst Time, and Waiting Time
 
 **Challenges**: 
 
